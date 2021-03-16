@@ -1,7 +1,9 @@
 from flask import Flask
 from flask import request
+import json
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def hello():
@@ -10,7 +12,7 @@ def hello():
 @app.route("/profile/<id>")
 def id_func(id):
     id = int(id)
-    return {"id":id, "id^2":id*id}
+    return {"id":id, "user":"Nijamudeen"}
 
 #receive id, moisture, temperature, luminosity
 #send light and water duration
@@ -22,6 +24,31 @@ def ESP32_Instructions():
     luminosity = request.args.get('luminosity')
 
     return {"request":"ok"}
+
+@app.route("/plants")
+def getPlants():
+    plants = [
+        {
+        "id":"1",
+        "name":"Plant 1",
+        "profile":"Government Issued",
+        "water": "16 Mar 2021",
+        "light": "4",
+        "temperature": "27.1",
+        "humidity": "40"
+        },
+        {
+        "id":"2",
+        "name":"plant 2",
+        "profile":"Succulent",
+        "water": "15 Mar 2021",
+        "light": "5",
+        "temperature": "27.6",
+        "humidity": "38"
+        }
+    ]
+
+    return json.dumps(plants)
 
 
 if __name__ == "__main__":

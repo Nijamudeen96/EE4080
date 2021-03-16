@@ -8,38 +8,25 @@ const App = () => {
 
   const [currentID, setID] = useState(0)
   const [userName, setUserName] = useState('User')
-  const [plants, setPlants] = useState([
-    {
-      id:1,
-      name:"plant 1",
-      profile:"Government Issued",
-      water: "16 Mar 2021",
-      light: "4",
-      temperature: "27.1",
-      humidity: "40"
-    },
-    {
-      id:2,
-      name:"plant 2",
-      profile:"Succulent",
-      water: "15 Mar 2021",
-      light: "5",
-      temperature: "27.6",
-      humidity: "38"
-    }
-  ])
+  const [plants, setPlants] = useState([])
 
   useEffect(() => {
-    fetch('/profile/3')
+    fetch('/profile/1')
     .then(res => res.json())
     .then(data => {
       setID(data.id);
+      setUserName(data.user);
     })
   },[])
 
   useEffect(() => {
-    setUserName('Nijamudeen')
-  },[])
+    fetch('/plants')
+    .then(res => res.json())
+    .then(data => {
+      setPlants(data)
+      console.log(data)
+    })
+  }, [])
 
   const form = (e) => {
     e.preventDefault()

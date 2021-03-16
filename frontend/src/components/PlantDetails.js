@@ -2,6 +2,10 @@ import { useState } from 'react'
 
 const PlantDetails = ({plant}) => {
 
+    const clicker = () => {
+        console.log("clicked")
+    }
+
     return(
         <>
             <h4>Last Watered: {plant.water}</h4>
