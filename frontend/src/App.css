@@ -1,38 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
-  text-align: center;
+  background-color: #f4f4f4;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.PlantSummary {
+  margin: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Plant {
+  background-color: #a8a5a5;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header-img {
+  width: 80vw;
+  margin-left: 10vw;
 }
 
-.App-link {
-  color: #61dafb;
+.Plant {
+  display: grid;
+  grid-template-areas:
+    "name"
+    "water"
+    "light"
+    "temp";
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.linear {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  margin-bottom: 5px;
+}
+
+.plant-name {
+  grid-area: name;
+}
+
+.plant-water {
+  grid-area: water;
+}
+
+.plant-light {
+  grid-area: light;
+}
+
+.plant-temp {
+  grid-area: temp;
+}
+
+h1 {
+  padding: 15px 5px;
+}
+
+.btn {
+  height: 2em;
+  border: none;
+  border-radius: 5px;
 }
