@@ -1,8 +1,9 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <ArduinoJson.h>
  
-const char* ssid = "AndroidAP128C";
-const char* password =  "mvez5497";
+const char* ssid = "MyRepublic_6969";
+const char* password =  "paetheecho";
  
 void setup() {
  
@@ -16,6 +17,7 @@ void setup() {
   }
  
   Serial.println("Connected to the WiFi network");
+  Serial.println(WiFi.localIP());
  
 }
  
@@ -25,7 +27,8 @@ void loop() {
  
     HTTPClient http;
  
-    http.begin("http://223.25.69.254:10001/"); //Specify the URL
+    //http.begin("192.168.0.128/profile/1");
+    http.begin("https://jsonplaceholder.typicode.com/todos/1");//Specify the URL
     int httpCode = http.GET();                                        //Make the request
  
     if (httpCode > 0) { //Check for the returning code
@@ -37,6 +40,7 @@ void loop() {
  
     else {
       Serial.println("Error on HTTP request");
+      Serial.println(httpCode);
     }
  
     http.end(); //Free the resources

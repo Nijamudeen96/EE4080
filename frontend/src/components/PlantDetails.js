@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const PlantDetails = ({plant}) => {
+const PlantDetails = ({plant, url}) => {
 
     const btn_labels = ["Auto", "On", "Off"]
     const [waterLabelNumber, setWaterLabelNumber] = useState(plant.water_setting)
@@ -10,7 +10,7 @@ const PlantDetails = ({plant}) => {
 
     const waterBtn = () => {
         waterLabelNumber === 2 ? setWaterLabelNumber(0) : setWaterLabelNumber(waterLabelNumber + 1)
-        fetch('/modifyWater?id='+plant.id+'&water='+waterLabelNumber)
+        fetch(url+'/modifyWater?id='+plant.id+'&water='+waterLabelNumber)
         .then(res => res.json())
         .then(data => {
             if(data.result === "ok"){
@@ -21,7 +21,7 @@ const PlantDetails = ({plant}) => {
 
     const lightBtn = () => {
         lightLabelNumber === 2 ? setLightLabelNumber(0) : setLightLabelNumber(lightLabelNumber + 1)
-        fetch('/modifyLight?id='+plant.id+'&light='+lightLabelNumber)
+        fetch(url+'/modifyLight?id='+plant.id+'&light='+lightLabelNumber)
         .then(res => res.json())
         .then(data => {
             if(data.result === "ok"){

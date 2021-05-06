@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PlantDetails from './PlantDetails'
 
-const Plant = ({plant}) => {
+const Plant = ({plant, url}) => {
 
     const [details, setDetails] = useState(false)
     const profile_label = ["Government", "Wet Plant", "Succulents"]
@@ -10,7 +10,7 @@ const Plant = ({plant}) => {
 
     const profileBtn = () => {
         currentProfile === 3 ? setProfile(1) : setProfile(currentProfile + 1)
-        fetch('/modifyProfile?id='+plant.id+'&profile='+currentProfile)
+        fetch(url+'/modifyProfile?id='+plant.id+'&profile='+currentProfile)
         .then(res => res.json())
         .then(data => {
             if(data.result === "ok"){
@@ -25,7 +25,7 @@ const Plant = ({plant}) => {
                 <h2 onClick={()=>setDetails(!details)}>{plant.name}</h2>
                 {details ? <button className="btn" onClick={profileBtn}>{label}</button> : <></>}
             </div>
-            {details ? <PlantDetails plant={plant} /> : <></>}
+            {details ? <PlantDetails plant={plant} url={url}/> : <></>}
         </div>
     )
 }

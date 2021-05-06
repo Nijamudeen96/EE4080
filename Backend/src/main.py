@@ -2,8 +2,11 @@ from flask import Flask
 from flask import request
 import json
 import mysql.connector
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 profile = [
     {},
     {
@@ -171,4 +174,4 @@ def modifyLight():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='192.168.0.131', port='5000', debug=True)
